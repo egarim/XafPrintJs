@@ -46,7 +46,9 @@ namespace XafPrintJs.Blazor.Server.Controllers
         }
         private async void PrintPdfAction_Execute(object sender, SimpleActionExecuteEventArgs e)
         {
-            var pdfBase64= GetEmbeddedResourceAsBase64("XafPrintJs.Blazor.Server.sample.pdf");
+
+            //Export report to memory stream https://docs.devexpress.com/XtraReports/DevExpress.XtraReports.UI.XtraReport.ExportToPdf(System.IO.Stream-DevExpress.XtraPrinting.PdfExportOptions)
+            var pdfBase64 = GetEmbeddedResourceAsBase64("XafPrintJs.Blazor.Server.sample.pdf");
 
             var Js = (this.Application as BlazorApplication).ServiceProvider.GetRequiredService<IJSRuntime>();
             await Js.InvokeVoidAsync("PrintPdf", pdfBase64);
